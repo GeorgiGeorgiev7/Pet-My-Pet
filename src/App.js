@@ -1,4 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
+import * as authService from './services/auth';
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -13,15 +16,28 @@ import MyPets from "./components/MyPets/MyPets";
 
 
 function App() {
+  const [userData, setUserData] = useState({
+    isAuth: false,
+    username: ''
+  });
+
+  useEffect(() => {
+    setUserData(
+      authService.getCurrentUser()
+    );
+  }, []);
+
+  console.log(userData);
+
   return (
     <div id="container">
       <div className="App">
-        <Header />
+        <Header {...userData} setUserData={setUserData} />
 
         <main id="site-content">
           <Routes>
             <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/login" element={<Login setUserData={setUserData} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<Create />} />
             <Route path="/details/:id" element={<Details />} />

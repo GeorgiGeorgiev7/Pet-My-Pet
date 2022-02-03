@@ -1,7 +1,7 @@
 import * as authService from '../../services/auth';
 import { useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({ setUserData }) => {
     const navigate = useNavigate();
 
     const onLogin = (e) => {
@@ -11,6 +11,8 @@ const Login = () => {
         const email = formData.get('email');
 
         authService.login(email);
+        setUserData(authService.getCurrentUser());
+
         navigate('/');
 
     };
