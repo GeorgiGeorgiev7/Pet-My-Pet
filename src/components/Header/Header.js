@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom';
+import * as authService from '../../services/auth';
 
 
 const Header = () => {
+    const onLogout = (e) => {
+        authService.logout();
+    };
+
     return (
         <header id="site-header">
             <nav className="navbar">
@@ -15,7 +20,7 @@ const Header = () => {
                         <span>Welcome, email</span>
                         <Link className="button" to="/my-pets">My Pets</Link>
                         <Link className="button" to="/create">Add Pet</Link>
-                        <Link className="button" to="javascript:void(0)">Logout</Link>
+                        <Link className="button" onClick={onLogout} to="/">Logout</Link>
                     </div>
                 </section>
             </nav>
