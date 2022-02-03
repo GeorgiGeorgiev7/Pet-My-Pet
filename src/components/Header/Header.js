@@ -4,6 +4,7 @@ import * as authService from '../../services/auth';
 
 const Header = ({
     isAuth,
+    username,
     setUserData
 }) => {
     const onLogout = (e) => {
@@ -20,7 +21,7 @@ const Header = ({
 
     const userNav = (
         <div id="user">
-            <span>Welcome, email</span>
+            <span>Welcome, {username}</span>
             <Link className="button" to="/my-pets">My Pets</Link>
             <Link className="button" to="/create">Add Pet</Link>
             <Link className="button" onClick={onLogout} to="/">Logout</Link>
