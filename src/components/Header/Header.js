@@ -1,16 +1,9 @@
 import { Link } from 'react-router-dom';
-import * as authService from '../../services/auth';
-
 
 const Header = ({
     isAuth,
-    username,
-    setUserData
+    username
 }) => {
-    const onLogout = (e) => {
-        authService.logout();
-        setUserData(authService.getCurrentUser());
-    };
 
     const guestNav = (
         <div id="guest">
@@ -24,7 +17,7 @@ const Header = ({
             <span>Welcome, {username}</span>
             <Link className="button" to="/my-pets">My Pets</Link>
             <Link className="button" to="/create">Add Pet</Link>
-            <Link className="button" onClick={onLogout} to="/">Logout</Link>
+            <Link className="button" to="/logout">Logout</Link>
         </div>
     );
 
