@@ -9,7 +9,7 @@ const PetCard = ({
             <h3>Name: {pet.name}</h3>
             <p>Type: {pet.type}</p>
             <p className="img"><img src={pet.imageUrl} /></p>
-            <Link className="button" to="/details/123">Details</Link>
+            <Link className="button" to={`/details/${pet._id}`}>Details</Link>
         </li>
     );
 };

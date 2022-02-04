@@ -1,16 +1,27 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import * as petService from '../../services/pet';
 
 const Details = () => {
+    const [pet, setPet] = useState({});
+    const { petId } = useParams();
+
+    useEffect(async () => {
+        const petData = await petService.getById(petId);
+
+        setPet(petData);
+    }, []);
+
     return (
         <section id="details-page" className="details">
             <div className="pet-information">
-                <h3>Name: Milo</h3>
-                <p className="type">Type: dog</p>
-                <p className="img"><img src="/images/dog.png" /></p>
+                <h3>Name: {pet.name}</h3>
+                <p className="type">Type: {pet.type}</p>
+                <p className="img"><img src={pet.imageUrl} /></p>
                 <div className="actions">
-                    <Link className="button" to="/edit/123">Edit</Link>
-                    <Link className="button" to="/delete/123">Delete</Link>
-                    <Link className="button" to="/like/123">Like</Link>
+                    <Link className="button" to={`/edit/${pet._id}`}>Edit</Link>
+                    <Link className="button" to={`/delete/${pet._id}`}>Delete</Link>
+                    <Link className="button" to={`/like/${pet._id}`}>Like</Link>
 
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />
@@ -20,11 +31,7 @@ const Details = () => {
             </div>
             <div className="pet-description">
                 <h3>Description:</h3>
-                <p>Today, some dogs are used as pets, others are used to help humans do their work. They are a popular
-                    pet because they are usually playful, friendly, loyal and listen to humans. Thirty million dogs in
-                    the United States are registered as pets.[5] Dogs eat both meat and vegetables, often mixed together
-                    and sold in stores as dog food. Dogs often have jobs, including as police dogs, army dogs,
-                    assistance dogs, fire dogs, messenger dogs, hunting dogs, herding dogs, or rescue dogs.</p>
+                <p>{pet.description}</p>
             </div>
         </section>
     );

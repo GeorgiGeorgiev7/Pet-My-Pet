@@ -9,6 +9,7 @@ import Footer from "./components/Footer/Footer";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
+import Logout from "./components/Logout/Logout";
 import Create from "./components/Create/Create";
 import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
@@ -38,9 +39,10 @@ function App() {
             <Route path="/dashboard/*" element={<Dashboard />} />
             <Route path="/login" element={<Login setUserData={setUserData} />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<Logout setUserData={setUserData} />} />
             <Route path="/create" element={<Create />} />
-            <Route path="/details/:id" element={<Details />} />
-            <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/details/:petId" element={<Details />} />
+            <Route path="/edit/:petId" element={<Edit />} />
             <Route path="/my-pets" element={<MyPets />} />
           </Routes>
         </main>
