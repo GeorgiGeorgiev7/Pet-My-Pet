@@ -27,8 +27,6 @@ function App() {
     );
   }, []);
 
-  console.log(userData);
-
   return (
     <div id="container">
       <div className="App">
