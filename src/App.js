@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
 import * as authService from './services/auth';
 
@@ -34,7 +34,8 @@ function App() {
 
         <main id="site-content">
           <Routes>
-            <Route path="/" element={<Dashboard />} />
+            <Route path="/" element={<Navigate to="/dashboard" />} />
+            <Route path="/dashboard/*" element={<Dashboard />} />
             <Route path="/login" element={<Login setUserData={setUserData} />} />
             <Route path="/register" element={<Register />} />
             <Route path="/create" element={<Create />} />

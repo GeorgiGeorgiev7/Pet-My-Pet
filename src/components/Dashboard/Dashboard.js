@@ -6,11 +6,11 @@ const Dashboard = () => {
     return (
         <section id="dashboard-page" className="dashboard">
             <h1>Dashboard</h1>
-            <nav>
+            <section>
                 <Routes>
                     <Route path="/" element={<PetList />} />
                 </Routes>
-            </nav>
+            </section>
         </section>
     );
 };

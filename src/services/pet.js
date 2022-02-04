@@ -7,3 +7,18 @@ export const getAll = async () => {
 
     return response.json();
 };
+
+export const create = async (petData) => {
+    const response = await fetch(
+        host + "/data/pets",
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(petData)
+        }
+    );
+
+    return response.json();
+};
