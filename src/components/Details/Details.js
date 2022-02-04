@@ -2,6 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as petService from '../../services/pet';
 
+
 const Details = () => {
     const [pet, setPet] = useState({});
     const { petId } = useParams();

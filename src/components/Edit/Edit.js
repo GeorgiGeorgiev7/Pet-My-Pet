@@ -1,4 +1,19 @@
+import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import * as petService from '../../services/pet';
+
+
 const Edit = () => {
+    const [pet, setPet] = useState({});
+    const { petId } = useParams();
+
+    useEffect(async () => {
+        const petData = await petService.getById(petId);
+
+        setPet(petData);
+    }, []);
+
+
     return (
         <section id="edit-page" className="edit">
             <form id="edit-form" action="#" method="">
@@ -7,26 +22,26 @@ const Edit = () => {
                     <p className="field">
                         <label htmlFor="name">Name</label>
                         <span className="input">
-                            <input type="text" name="name" id="name" value="Milo" />
+                            <input type="text" name="name" id="name" defaultValue={pet.name} />
                         </span>
                     </p>
                     <p className="field">
                         <label htmlFor="description">Description</label>
                         <span className="input">
                             <textarea name="description"
-                                id="description">Today, some dogs are used as pets, others are used to help humans do their work. They are a popular pet because they are usually playful, friendly, loyal and listen to humans. Thirty million dogs in the United States are registered as pets.[5] Dogs eat both meat and vegetables, often mixed together and sold in stores as dog food. Dogs often have jobs, including as police dogs, army dogs, assistance dogs, fire dogs, messenger dogs, hunting dogs, herding dogs, or rescue dogs.</textarea>
+                                id="description" defaultValue={pet.description}></textarea>
                         </span>
                     </p>
                     <p className="field">
                         <label htmlFor="image">Image</label>
                         <span className="input">
-                            <input type="text" name="imageUrl" id="image" value="/images/dog.png" />
+                            <input type="text" name="imageUrl" id="image" defaultValue={pet.imageUrl} />
                         </span>
                     </p>
                     <p className="field">
                         <label htmlFor="type">Type</label>
                         <span className="input">
-                            <select id="type" name="type" value="dog">
+                            <select id="type" name="type" defaultValue={pet.type}>
                                 <option value="cat" >Cat</option>
                                 <option value="dog" selected>Dog</option>
                                 <option value="parrot">Parrot</option>

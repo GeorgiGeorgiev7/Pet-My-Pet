@@ -27,6 +27,6 @@ export const getById = async (petId) => {
     const response = await fetch(
         host + `/data/pets/${petId}`
     );
-
+    
     return response.json();
 };
