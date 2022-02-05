@@ -1,23 +1,50 @@
-export const login = (username) => {
-    localStorage.setItem('isAuth', true);
-    localStorage.setItem('username', username);
-};
+import { host } from './util';
 
-export const getCurrentUser = () => {
-    const isAuth = localStorage.getItem('isAuth');
-    const username = localStorage.getItem('username');
 
-    return {
-        isAuth: isAuth == 'true',
-        username: username || ''
+export const login = async (email, password) => {
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
     };
+
+    const response = await fetch(host + "/users/login", options);
+
+    if (response.ok) {
+        return response.json();
+    } else {
+        throw await response.json();
+    }
+
 };
 
-export const isAuth = () => {
-    return localStorage.getItem('isAuth');
+export const logout = async (token) => {
+    const options = {
+        headers: {
+            "X-Authorization": token
+        }
+    };
+
+    return fetch(host + "/users/logout", options);
 };
 
-export const logout = () => {
-    localStorage.setItem('isAuth', false);
-    localStorage.removeItem('username');
+export const register = async (email, password) => {
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    };
+
+    const response = await fetch(host + "/users/register", options);
+
+    if (response.ok) {
+        return response.json();
+    } else {
+        throw await response.json();
+    }
+
 };
