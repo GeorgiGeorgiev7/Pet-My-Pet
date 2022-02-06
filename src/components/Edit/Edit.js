@@ -1,11 +1,13 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import * as petService from '../../services/pet';
-
+import { useAuthContext } from '../../contexts/AuthContext';
 
 const Edit = () => {
   const [pet, setPet] = useState({});
   const { petId } = useParams();
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   useEffect(async () => {
     const petData = await petService.getById(petId);
@@ -13,10 +15,27 @@ const Edit = () => {
     setPet(petData);
   }, []);
 
+  const commitChanges = async (e) => {
+    e.preventDefault();
+
+    const { name, description, imageUrl, type } =
+      Object.fromEntries(new FormData(e.currentTarget));
+
+    const updatedPetData = {
+      name,
+      description,
+      imageUrl,
+      type
+    };
+
+    await petService.update(petId, updatedPetData, user.accessToken);
+    navigate('/details/' + petId);
+
+  };
 
   return (
     <section id="edit-page" className="edit">
-      <form id="edit-form" action="#" method="">
+      <form id="edit-form" onSubmit={commitChanges}>
         <fieldset>
           <legend>Edit my Pet</legend>
           <p className="field">

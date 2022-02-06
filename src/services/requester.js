@@ -1,5 +1,5 @@
-export const request = (url) => {
-    return fetch(url).then(responseHandler);
+export const request = (url, options = {}) => {
+    return fetch(url, options).then(responseHandler);
 };
 
 async function responseHandler(res) {

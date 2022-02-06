@@ -5,25 +5,20 @@ import { request } from './requester';
 export const getAll = () =>
     request(host + "/data/pets?sortBy=_createdOn%20desc");
 
-export const create = async (petData, token) => {
-    const response = await fetch(
-        host + "/data/pets",
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Authorization': token
-            },
-            body: JSON.stringify(petData)
-        }
-    );
-
-    return response.json();
-};
-
 export const getById = (petId) =>
     request(host + `/data/pets/${petId}`);
 
+export const create = async (petData, token) => {
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': token
+        },
+        body: JSON.stringify(petData)
+    };
+    return request(host + "/data/pets", options);
+};
 
 export const destroy = async (petId, token) => {
     const options = {
@@ -33,11 +28,17 @@ export const destroy = async (petId, token) => {
             "X-Authorization": token
         }
     };
+    return request(host + `/data/pets/${petId}`, options);
+};
 
-    const response = await fetch(
-        host + `/data/pets/${petId}`,
-        options
-    );
-
-    return response.json();
+export const update = async (petId, petData, token) => {
+    const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': token
+        },
+        body: JSON.stringify(petData)
+    };
+    return request(host + `/data/pets/${petId}`, options);
 };
