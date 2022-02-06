@@ -1,16 +1,8 @@
-import { useEffect, useState } from 'react';
-
 import PetCard from "./PetCard/PetCard";
-import * as petService from '../../services/pet';
 
-const PetList = () => {
-    const [pets, setPets] = useState([]);
-
-    useEffect(() => {
-        petService.getAll()
-            .then(allPets => setPets(allPets))
-            .catch(err => console.log(`Error occurred: ${err}`));
-    }, []);
+const PetList = ({
+    pets
+}) => {
 
     return (
         <>

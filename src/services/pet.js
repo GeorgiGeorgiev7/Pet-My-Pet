@@ -8,6 +8,9 @@ export const getAll = () =>
 export const getById = (petId) =>
     request(host + `/data/pets/${petId}`);
 
+export const getMine = (userId) =>
+    request(host + `/data/pets?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`);
+
 export const create = async (petData, token) => {
     const options = {
         method: 'POST',
@@ -42,3 +45,4 @@ export const update = async (petId, petData, token) => {
     };
     return request(host + `/data/pets/${petId}`, options);
 };
+

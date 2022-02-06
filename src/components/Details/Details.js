@@ -20,7 +20,7 @@ const Details = () => {
 
     const deleteHandler = async (e) => {
         e.preventDefault();
-        setShowDeleteCatalog(false)
+        setShowDeleteCatalog(false);
         await petService.destroy(petId, user.accessToken);
         navigate('/');
     };
@@ -64,7 +64,7 @@ const Details = () => {
 
                         <div className="likes">
                             <img className="hearts" src="/images/heart.png" />
-                            <span id="total-likes">Likes: {pet.likes?.length}</span>
+                            <span id="total-likes">Likes: 0</span>
                         </div>
                     </div>
                 </div>
