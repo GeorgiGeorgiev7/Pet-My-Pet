@@ -14,6 +14,8 @@ import Details from "./components/Details/Details";
 import Edit from "./components/Edit/Edit";
 import MyPets from "./components/MyPets/MyPets";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (

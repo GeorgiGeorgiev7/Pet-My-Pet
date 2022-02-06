@@ -1,4 +1,4 @@
-import { host } from './util';
+import { host } from './common';
 
 
 export const login = async (email, password) => {

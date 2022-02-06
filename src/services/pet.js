@@ -1,4 +1,4 @@
-import { host } from './util';
+import { host } from './common';
 import { request } from './requester';
 
 
