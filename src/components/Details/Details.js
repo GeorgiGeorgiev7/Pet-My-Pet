@@ -12,7 +12,8 @@ const Details = () => {
 
     useEffect(() => {
         petService.getById(petId)
-            .then(petData => setPet(petData));
+            .then(petData => setPet(petData))
+            .catch(err => console.log(err));
     }, [petId]);
 
     const deleteHandler = async (e) => {

@@ -21,13 +21,9 @@ export const create = async (petData, token) => {
     return response.json();
 };
 
-export const getById = async (petId) => {
-    const response = await fetch(
-        host + `/data/pets/${petId}`
-    );
+export const getById = (petId) =>
+    request(host + `/data/pets/${petId}`);
 
-    return response.json();
-};
 
 export const destroy = async (petId, token) => {
     const options = {
