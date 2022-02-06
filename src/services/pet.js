@@ -1,12 +1,9 @@
 import { host } from './util';
+import { request } from './requester';
 
-export const getAll = async () => {
-    const response = await fetch(
-        host + "/data/pets?sortBy=_createdOn%20desc"
-    );
 
-    return response.json();
-};
+export const getAll = () =>
+    request(host + "/data/pets?sortBy=_createdOn%20desc");
 
 export const create = async (petData, token) => {
     const response = await fetch(

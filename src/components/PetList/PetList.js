@@ -6,9 +6,10 @@ import * as petService from '../../services/pet';
 const PetList = () => {
     const [pets, setPets] = useState([]);
 
-    useEffect(async () => {
-        const allPets = await petService.getAll();
-        setPets(allPets);
+    useEffect(() => {
+        petService.getAll()
+            .then(allPets => setPets(allPets))
+            .catch(err => console.log(`Error occurred: ${err}`));
     }, []);
 
     return (
