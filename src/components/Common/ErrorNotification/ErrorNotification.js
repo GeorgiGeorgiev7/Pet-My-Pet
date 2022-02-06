@@ -1,7 +1,6 @@
 import Modal from 'react-bootstrap/Modal';
-import { useState } from 'react';
 
-const ErrorNotification = () => ({
+const ErrorNotification = ({
     show,
     errMessage
 }) => {
