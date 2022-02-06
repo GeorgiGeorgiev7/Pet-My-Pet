@@ -18,6 +18,11 @@ const Details = () => {
             .catch(err => console.log(err));
     }, [petId]);
 
+    const likeClickHandler = (e) => {
+        e.preventDefault();
+
+    };
+
     const deleteHandler = async (e) => {
         e.preventDefault();
         setShowDeleteCatalog(false);
@@ -39,7 +44,7 @@ const Details = () => {
 
     const nonOwnerButtons = (
         <>
-            <Link className="button" to={`/like/${pet._id}`}>Like</Link>
+            <Link className="button" to={`/like/${pet._id}`} onClick={likeClickHandler}>Like</Link>
         </>
     );
 

@@ -45,4 +45,3 @@ export const update = async (petId, petData, token) => {
     };
     return request(host + `/data/pets/${petId}`, options);
 };
-

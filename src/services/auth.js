@@ -1,4 +1,5 @@
 import { host } from './common';
+import { request } from './requester';
 
 
 export const login = async (email, password) => {
@@ -9,25 +10,7 @@ export const login = async (email, password) => {
         },
         body: JSON.stringify({ email, password })
     };
-
-    const response = await fetch(host + "/users/login", options);
-
-    if (response.ok) {
-        return response.json();
-    } else {
-        throw await response.json();
-    }
-
-};
-
-export const logout = async (token) => {
-    const options = {
-        headers: {
-            "X-Authorization": token
-        }
-    };
-
-    return fetch(host + "/users/logout", options);
+    return request(host + "/users/login", options);
 };
 
 export const register = async (email, password) => {
@@ -38,13 +21,14 @@ export const register = async (email, password) => {
         },
         body: JSON.stringify({ email, password })
     };
+    return request(host + "/users/register", options);
+};
 
-    const response = await fetch(host + "/users/register", options);
-
-    if (response.ok) {
-        return response.json();
-    } else {
-        throw await response.json();
-    }
-
+export const logout = async (token) => {
+    const options = {
+        headers: {
+            "X-Authorization": token
+        }
+    };
+    return request(host + "/users/logout", options);
 };
