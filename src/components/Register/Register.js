@@ -1,12 +1,11 @@
 import * as AuthService from '../../services/auth';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 
 const Register = () => {
     const navigate = useNavigate();
-    const { login } = useContext(AuthContext);
+    const { login } = useAuthContext();
 
 
     const registerSubmitHandler = async (e) => {

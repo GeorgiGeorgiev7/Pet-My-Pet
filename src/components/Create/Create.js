@@ -1,11 +1,10 @@
 import * as petService from '../../services/pet';
 import { useNavigate } from 'react-router-dom';
-import { useContext } from 'react';
-import { AuthContext } from '../../contexts/AuthContext';
+import { useAuthContext } from '../../contexts/AuthContext';
 
 
 const Create = () => {
-    const { user } = useContext(AuthContext);
+    const { user } = useAuthContext();
     const navigate = useNavigate();
 
     const createPetHandler = async (e) => {

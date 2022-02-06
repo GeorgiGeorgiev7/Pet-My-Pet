@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { AuthContext } from './contexts/AuthContext';
-import useLocalStorage from './hooks/useLocalStorage';
+import { AuthProvider } from './contexts/AuthContext';
 
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -17,26 +15,9 @@ import Edit from "./components/Edit/Edit";
 import MyPets from "./components/MyPets/MyPets";
 
 
-const initialAuthState = {
-  _id: '',
-  email: '',
-  accessToken: '',
-}
-
 function App() {
-  const [user, setUser] = useLocalStorage('user', initialAuthState);
-
-  const login = (authData) => {
-    setUser(authData);
-  };
-
-  const logout = () => {
-    setUser(initialAuthState);
-  };
-
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-
+    <AuthProvider>
       <div id="container">
         <div className="App">
           <Header />
@@ -58,7 +39,7 @@ function App() {
           <Footer />
         </div>
       </div>
-    </AuthContext.Provider>
+    </AuthProvider>
   );
 }
 
