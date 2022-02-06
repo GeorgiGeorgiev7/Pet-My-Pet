@@ -30,5 +30,6 @@ export const logout = async (token) => {
             "X-Authorization": token
         }
     };
+
     return request(host + "/users/logout", options);
 };

@@ -1,11 +1,10 @@
-export const request = (url, options = {}) => {
-    return fetch(url, options).then(responseHandler);
-};
+export const request = async (url, options = {}) => {
+    const response = await fetch(url, options);
 
-async function responseHandler(res) {
-    if (res.ok) {
-        return res.json();
+    if (response.ok && response.status != 204) {
+        return response.json();
     } else {
-        throw await res.json();
+        throw await response.json();
     }
-}
+
+};
